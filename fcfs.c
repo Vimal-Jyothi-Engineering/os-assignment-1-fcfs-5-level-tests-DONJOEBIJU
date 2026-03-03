@@ -23,13 +23,16 @@ int main() {
             }
         }
     }
-    wt[0] = 0;
-    for (int i = 1; i < n; i++) {
-        wt[i] = wt[i-1] + bt[i-1];
-    }
+
+    int cur = 0;
 
     for (int i = 0; i < n; i++) {
-        tat[i] = wt[i] + bt[i];
+        if (cur < at[i])
+            cur = at[i];
+
+        wt[i] = cur - at[i];
+        cur += bt[i];
+        tat[i] = cur - at[i];
     }
 
     double avgWT = 0, avgTAT = 0;
